@@ -10,6 +10,7 @@ initial-scale=1">
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head><body>
+
 <div class="container-fluid">
     <div class="row" style="background-color: #074ea7">
         <div class="col-xs-1 col-sm-2 logo" >
@@ -25,11 +26,20 @@ initial-scale=1">
                 <span id="right">
                         <?php
                         if (is_logged()){ ?>
-                        Xin chào <?php echo get_current_username(); ?>
-                    <a style="color: white;" href="<?php echo base_url('?controller=login&action=logout'); ?>">Đăng xuất</a>
+                            <div class="dropdown">
+                                  <button style="right: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo get_current_username(); ?>
+                                  <span class="caret"></span></button>
+                                  <ul class="dropdown-menu">
+                                    <li><a style="color: black;" href="<?php echo base_url('?controller=login&action=setting'); ?>">Cài đặt</a></li>
+                                      <li><a style="color: black;" href="<?php echo base_url('?controller=login&action=changepass'); ?>">Đổi mật khẩu</a></li>
+                                    <li><a style="color: black;" href="<?php echo base_url('?controller=login&action=logout'); ?>">Đăng xuất</a></li>
+                                  </ul>
+                            </div>
+<!--                        Xin chào --><?php //echo get_current_username(); ?>
+<!--                            <button class="btn btn-default"><a style="color: black;" href="--><?php //echo base_url('?controller=login&action=logout'); ?><!--">Đăng xuất</a></button>-->
                         <?php   }else{ ?>
-                            <a style="color: white;" href="<?php echo base_url('?controller=login&action=getUser'); ?>">Đăng nhập</a>
-                            <a style="color: white;" href="<?php echo base_url('?controller=login&action=register'); ?>">Đăng ký</a>
+                            <button class="btn btn-default"> <a style="color: black"  href="<?php echo base_url('?controller=login&action=getUser'); ?>">Đăng nhập</a></button>
+                            <button class="btn btn-default"><a style="color: black" href="<?php echo base_url('?controller=login&action=register'); ?>">Đăng ký</a></button>
                         <?php } ?>
             </span></div>
         </div>

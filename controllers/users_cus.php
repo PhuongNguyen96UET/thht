@@ -3,8 +3,8 @@ function getQuery(){
     if (!is_logged()) {
         redirect(base_url(), array('controller' => 'login', 'action' => 'logout'));
     }
-    $sql = "SELECT Code,Name FROM `subcription`";
-    $cv = db_get_list($sql);
+//    $sql = "SELECT Code,Name FROM `subcription`";
+//    $cv = db_get_list($sql);
     include_once('views/base/header.php');
     include_once('views/khachhang/khachhang.php');
     include_once('views/base/footer.php');
@@ -15,8 +15,8 @@ function getData()
     if (!is_logged()) {
         redirect(base_url(), array('controller' => 'login', 'action' => 'logout'));
     }
-    $sql = "SELECT id,username FROM `subcription`";
-    $cv = db_get_list($sql);
+//    $sql = "SELECT id,username FROM `subcription`";
+//    $cv = db_get_list($sql);
     include_once('views/base/header.php');
 
 // Nếu người dùng submit form
@@ -27,6 +27,7 @@ function getData()
         'customers.fullname' => input_post('fullname'),
         'customers.phone' => input_post('phone'),
         'customers.email' => input_post('email'),
+        'level' => 2,
     );
 
 // VỊ TRÍ 01: CODE XỬ LÝ PHÂN TRANG
@@ -35,7 +36,7 @@ function getData()
     if(isset($data['fullname']) && $data['fullname'] == ''){unset($data['fullname']);}
     if(isset($data['phone']) && $data['number'] == ''){unset($data['phone']);}
     if(isset($data['email']) && $data['email'] == ''){unset($data['email']);}
-   $sql = db_create_sql('SELECT count(id) as counter from users_cus {where}',$data);
+   $sql = db_create_sql('SELECT count(id) as counter from tb_user {where}',$data);
     $result = db_get_row($sql);
     $total_records = $result['counter'];
 
@@ -47,7 +48,7 @@ function getData()
 
 // Lấy link
     $link = create_link(base_url(), array(
-        'controller' => 'khachhang',
+        'controller' => 'users_cus',
         'action' => 'getData',
         'page' => '{page}'
     ));
@@ -56,7 +57,7 @@ function getData()
     $paging = paging($link, $total_records, $current_page, $limit);
 
 // Lấy danh sách User
-    $sql =db_create_sql("SELECT users_cus.id,users_cus.fullname,users_cus.username,users_cus.phone,users_cus.email,users_cus.address FROM users_cus  {where} LIMIT {$paging['start']}, {$paging['limit']}",$data);
+    $sql =db_create_sql("SELECT id,fullname,username,phone,email,address FROM tb_user  {where} LIMIT {$paging['start']}, {$paging['limit']}",$data);
     $users = db_get_list($sql);
 //}
     include_once('views/khachhang/khachhang.php');
@@ -92,6 +93,7 @@ function addKH(){
             'address'     => input_post('address'),
             "password"  => input_post("password"),
             're-password'  => input_post('re-password'),
+            'level' => 2,
         );
 
         // require file xử lý database cho user
@@ -107,7 +109,7 @@ function addKH(){
             $data['password']=md5($data['password']);
 //            // Nếu insert thành công thì thông báo
 //            // và chuyển hướng về trang danh sách user
-            if (db_insert('users_cus', $data)){
+            if (db_insert('tb_user', $data)){
                 $link= create_link(base_url(), array('controller' => 'users_cus', 'action' => 'getData'));
                 echo"
             <script>

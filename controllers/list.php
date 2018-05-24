@@ -29,7 +29,7 @@ $link = create_link(base_url(), array(
 $paging = paging($link, $total_records, $current_page, $limit);
 
 // Lấy danh sách User
-$sql = db_create_sql("SELECT * FROM tb_user {where} LIMIT {$paging['start']}, {$paging['limit']}");
+$sql = db_create_sql("SELECT * FROM tb_user WHERE level=1 LIMIT {$paging['start']}, {$paging['limit']}");
 $users = db_get_list($sql);
 include_once('views/admin/list.php');
  include_once('views/base/footer.php');

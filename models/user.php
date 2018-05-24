@@ -5,6 +5,11 @@ function db_user_get_by_username($username){
     $sql = "SELECT * FROM tb_user where username = '{$username}'";
     return db_get_row($sql);
 }
+function db_user_get_1_by_username($username){
+    $username = addslashes($username);
+    $sql = "SELECT fullname,username,phone,email,address FROM tb_user where username = '{$username}'";
+    return db_get_row($sql);
+}
 
 
 // Hàm validate dữ liệu bảng User
@@ -279,7 +284,7 @@ function db_kh_validate($data)
     if (isset($data['username']) && $data['username']!=''){
         $sql = "SELECT count(Code) as counter FROM users_cus WHERE username='".addslashes($data['username'])."'";
         $row = db_get_row($sql);
-        if ($row['counter'] > 0){
+        if (!empty($row)){
             $error['username'] = 'Tài khoản này đã được đăng ký';
         }
     }
@@ -288,7 +293,7 @@ function db_kh_validate($data)
     if (isset($data['phone']) && $data['phone']!=''){
         $sql = "SELECT count(Code) as counter FROM users_cus WHERE phone_number='".addslashes($data['phone'])."'";
         $row = db_get_row($sql);
-        if ($row['counter'] > 0){
+        if (!empty($row)){
             $error['phone'] = 'Số điện thoại này đã được đăng ký';
         }
     }
