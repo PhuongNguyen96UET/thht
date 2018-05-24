@@ -30,9 +30,9 @@ initial-scale=1">
                                   <button style="right: 100px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo get_current_username(); ?>
                                   <span class="caret"></span></button>
                                   <ul class="dropdown-menu">
-                                    <li><a style="color: black;" href="<?php echo base_url('?controller=login&action=setting'); ?>">Cài đặt</a></li>
-                                      <li><a style="color: black;" href="<?php echo base_url('?controller=login&action=changepass'); ?>">Đổi mật khẩu</a></li>
-                                    <li><a style="color: black;" href="<?php echo base_url('?controller=login&action=logout'); ?>">Đăng xuất</a></li>
+                                    <li><a style="color: black;margin-left: 10px;" href="<?php echo base_url('?controller=login&action=setting'); ?>">Cài đặt</a></li>
+                                    <li><a style="color: black;margin-left: 10px;" href="<?php echo base_url('?controller=login&action=changepass'); ?>">Đổi mật khẩu</a></li>
+                                    <li><a style="color: black;margin-left: 10px;" href="<?php echo base_url('?controller=login&action=logout'); ?>">Đăng xuất</a></li>
                                   </ul>
                             </div>
 <!--                        Xin chào --><?php //echo get_current_username(); ?>

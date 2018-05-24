@@ -1,5 +1,7 @@
-<h1>Đăng ký tài khoản</h1>
 
+<div>
+  <h3>Đăng ký tài khoản</h3> 
+</div>
 <form id="main-form" method="post" action="<?php echo create_link(base_url(), array('controller' => 'users_cus', 'action' => 'addKH')); ?>">
     <input type="hidden" name="request_name" value="add_c"/>
     <div class="col-md-6">

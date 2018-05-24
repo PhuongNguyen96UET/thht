@@ -75,24 +75,21 @@
             <div class="row " style="height: 30px;"></div>
             <div class="row ">
                 <div class="col-md-6 offset-md-4" id="main">
-
-                    <h1>Đăng nhập</h1>
-
+                    <h3>Đăng nhập</h3>
                     <form id="main-form" method="post" ">
                         <input type="hidden" name="request_name" value="login"/>
                         <div class="col-md-6">
-                            <!-- name -->
-                            <!--                    <label for="username" class="control-label" >Tên đăng nhập  </label>-->
-                            <input type="text" class="col-sm-10 form-control" name="username" placeholder="Tên đăng nhập" value="<?php echo input_post('username'); ?>"/>
+                            <input type="text" class="col-sm-12 form-control" name="username" placeholder="Tên đăng nhập" value="<?php echo input_post('username'); ?>"/>
                             <span><?php show_error($error, 'username'); ?></span><br>
-
-                            <!-- username -->
-                            <!--                    <label for="password" class="control-label" >Mật khẩu</label>-->
-                            <input type="password" class="col-sm-10 form-control" name="password" placeholder="Mật khẩu" value="<?php echo input_post('password'); ?>"/>
+                            <input type="password" class="col-sm-12 form-control" name="password" placeholder="Mật khẩu" value="<?php echo input_post('password'); ?>"/>
                             <span><?php show_error($error, 'password'); ?></span><br>
                         </div>
                         <div class="col-md-6 controls">
-                            <button form="main-form" type="submit" style="width: 100%;" class="col-sm-10 btn btn-primary login">Đăng nhập</button>
+                            <button form="main-form" type="submit" style="width: 40%;" class="btn btn-primary login">Đăng nhập</button>
+                        </div>
+
+                        <div style="margin-left: 15px">
+                            <a href="#">Quên mật khẩu?</a>
                         </div>
 
                     </form>
