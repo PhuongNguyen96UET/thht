@@ -43,7 +43,7 @@ function db_get_row($sql){
     global $conn;
     $result = mysqli_query($conn, $sql);
     $row = array();
-    if (mysqli_num_rows($result) > 0){
+    if ($result){
         $row = mysqli_fetch_assoc($result);
     }
     return $row;

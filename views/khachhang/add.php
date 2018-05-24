@@ -39,7 +39,7 @@
        <span><?php show_error($error, 'email'); ?></span><br>
 
     </div>
-    <div class="controls">
+    <div class="col-md-6 controls">
         <button form="main-form" type="submit" style="width: 100px;" class="btn btn-primary login">Lưu</button>
         <a style="width: 100px;" class="button" href="<?php echo create_link(base_url(), array('controller' => 'khachhang', 'action' => 'getQuery')); ?>"><button type="button" class="btn btn-default login">Trở về</button></a>
     </div>
