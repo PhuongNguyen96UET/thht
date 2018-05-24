@@ -234,17 +234,12 @@ function db_kh_validate($data)
 
     /* VALIDATE CĂN BẢN */
     // Username
-    if (isset($data['Code']) && $data['Code'] == ''){
-        $error['Code'] = 'Bạn chưa nhập mã';
-    }
 
     // Email
-    if (isset($data['Name']) && $data['Name'] == ''){
-        $error['Name'] = 'Bạn chưa nhập tên';
+    if (isset($data['fullname']) && $data['fullname'] == ''){
+        $error['fullname'] = 'Bạn chưa nhập tên khách hàng';
     }
-    if (isset($data['date_of_birth']) && $data['date_of_birth'] == ''){
-        $error['date_of_birth'] = 'Bạn chưa nhập ngày sinh';
-    }
+
     if (isset($data['email']) && $data['email'] == ''){
         $error['email'] = 'Bạn chưa nhập Email';
     }
@@ -253,46 +248,54 @@ function db_kh_validate($data)
     }
 
     // Password
-    if (isset($data['phone_number']) && $data['phone_number'] == ''){
-        $error['phone_number'] = 'Bạn chưa nhập số điện thoại';
+    if (isset($data['phone']) && $data['phone'] == ''){
+        $error['phone'] = 'Bạn chưa nhập số điện thoại';
     }
-    if(isset($data['phone_number']) && $data['phone_number'] !=''){
-        if(!is_phone($data['phone_number']))
-            $error['phone_number'] = 'Số điện thoại không hợp lệ';
-    }
-
-    if (isset($data['Address']) && $data['Address'] == ''){
-        $error['Address'] = 'Bạn chưa nhập địa chỉ';
+    if(isset($data['phone']) && $data['phone'] !=''){
+        if(!is_phone($data['phone']))
+            $error['phone'] = 'Số điện thoại không hợp lệ';
     }
 
-    if (isset($data['subscription_type']) && !in_array($data['subscription_type'], $jobs)){
-        $error['subscription_type'] = 'Loại đăng ký không tồn tại';
+    if (isset($data['username']) && $data['username'] == ''){
+        $error['username'] = 'Bạn chưa nhập tên người dùng';
+    }
+    if (isset($data['address']) && $data['address'] == ''){
+        $error['address'] = 'Bạn chưa nhập địa chỉ';
+    }
+    // Password
+    if (isset($data['password']) && $data['password'] == ''){
+        $error['password'] = 'Bạn chưa nhập mật khẩu';
     }
 
+    // Re-password
+    if (isset($data['password']) && isset($data['re-password']) && $data['password'] != $data['re-password']){
+        $error['re-password'] = 'Mật khẩu nhập lại không đúng';
+    }
 
     /* VALIDATE LIÊN QUAN CSDL */
     // Chúng ta nên kiểm tra các thao tác trước có bị lỗi không, nếu không bị lỗi thì mới
     // tiếp tục kiểm tra bằng truy vấn CSDL
     // Username
-    if (isset($data['Code']) && $data['Code']!=''){
-        $sql = "SELECT count(Code) as counter FROM customers WHERE Code='".addslashes($data['Code'])."'";
+    if (isset($data['username']) && $data['username']!=''){
+        $sql = "SELECT count(Code) as counter FROM users_cus WHERE username='".addslashes($data['username'])."'";
         $row = db_get_row($sql);
         if ($row['counter'] > 0){
-            $error['Code'] = 'Mã khách hàng này đã tồn tại';
+            $error['username'] = 'Tài khoản này đã được đăng ký';
         }
     }
 
-    if (isset($data['phone_number']) && $data['phone_number']!=''){
-        $sql = "SELECT count(Code) as counter FROM customers WHERE phone_number='".addslashes($data['phone_number'])."'";
+
+    if (isset($data['phone']) && $data['phone']!=''){
+        $sql = "SELECT count(Code) as counter FROM users_cus WHERE phone_number='".addslashes($data['phone'])."'";
         $row = db_get_row($sql);
         if ($row['counter'] > 0){
-            $error['phone_number'] = 'Số điện thoại này đã được đăng ký';
+            $error['phone'] = 'Số điện thoại này đã được đăng ký';
         }
     }
 
     // Email
     if (isset($data['email']) && $data['email']!=''){
-        $sql = "SELECT count(Code) as counter FROM customers WHERE email='".addslashes($data['email'])."'";
+        $sql = "SELECT count(id) as counter FROM users_cus WHERE email='".addslashes($data['email'])."'";
         $row = db_get_row($sql);
         if ($row['counter'] > 0){
             $error['email'] = 'Email này đã tồn tại';

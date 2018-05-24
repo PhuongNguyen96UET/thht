@@ -1,6 +1,6 @@
 <div class="row" id="nhanvien">
     <h3>Tìm kiếm</h3>
-    <form action="<?php echo create_link(base_url(), array('controller' => 'khachhang', 'action' => 'getData')); ?>" method="post" id="form1">
+    <form action="<?php echo create_link(base_url(), array('controller' => 'users_cus', 'action' => 'getData')); ?>" method="post" id="form1">
         <div class="row" >
             <div class="col-sm-6" >
                 <div class="form-group">
@@ -48,7 +48,7 @@
 
 <div class="controls">
     <?php if (is_supper_admin()){ ?>
-        <a class="button" href="<?php echo create_link(base_url(), array('controller' => 'khachhang', 'action' => 'addKH')); ?>"><button class="btn btn-default login">Thêm</button></a>
+        <a class="button" href="<?php echo create_link(base_url(), array('controller' => 'users_cus', 'action' => 'addKH')); ?>"><button class="btn btn-default login">Thêm</button></a>
     <?php } ?>
 </div>
 <table class="table table-striped" style="font-size: 14px;">
@@ -61,8 +61,5 @@
         <td>Số điện thoại</td>
         <td>Email</td>
         <td>Địa chỉ</td>
-        <?php if (is_supper_admin()){ ?>
-            <td>Hành động</td>
-        <?php } ?>
     </tr>
     </thead>

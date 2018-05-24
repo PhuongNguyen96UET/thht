@@ -56,7 +56,7 @@ function getData()
     $paging = paging($link, $total_records, $current_page, $limit);
 
 // Lấy danh sách User
-    $sql =db_create_sql("SELECT users_cus.id,users_cus.fullname,users_cus.username,users_cus.phone,users_cus.email,users_cus.address, as subcription FROM users_cus  {where} LIMIT {$paging['start']}, {$paging['limit']}",$data);
+    $sql =db_create_sql("SELECT users_cus.id,users_cus.fullname,users_cus.username,users_cus.phone,users_cus.email,users_cus.address FROM users_cus  {where} LIMIT {$paging['start']}, {$paging['limit']}",$data);
     $users = db_get_list($sql);
 //}
     include_once('views/khachhang/khachhang.php');
@@ -90,7 +90,7 @@ function addKH(){
             'phone'     => input_post('phone'),
             'email'  => input_post('email'),
             'address'     => input_post('address'),
-            "password"  => input_post("password")
+            "password"  => input_post("password"),
             're-password'  => input_post('re-password'),
         );
 
@@ -108,7 +108,7 @@ function addKH(){
 //            // Nếu insert thành công thì thông báo
 //            // và chuyển hướng về trang danh sách user
             if (db_insert('users_cus', $data)){
-                $link= create_link(base_url(), array('controller' => 'khachhang', 'action' => 'getData'));
+                $link= create_link(base_url(), array('controller' => 'users_cus', 'action' => 'getData'));
                 echo"
             <script>
                 alert('Thêm người dùng thành công!');

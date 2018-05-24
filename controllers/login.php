@@ -47,6 +47,10 @@ function logout(){
     set_logout();
 
 // Chuyển hướng sang trang login
-    redirect(base_url('?cotroller=login&action=getUser'));
+    redirect(base_url('?cotroller=dashboard&action=getDashBoard'));
 }
+function register(){
+    require_once('views/register.php');
+}
+
 ?>

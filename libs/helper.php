@@ -3,7 +3,7 @@
 # BÀI THỨ 08
 // Hàm tạo URL
 function base_url($uri = ''){
-    return 'http://localhost/pttk/'.$uri;
+    return 'http://localhost/thht/'.$uri;
 }
  
 // Hàm redirect

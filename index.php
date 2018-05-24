@@ -3,8 +3,8 @@
 define("IN_SITE", true);
 
 // Lấy module và action trên URL
-$controller = isset($_GET['controller'])? $_GET['controller']: 'login' ;
-$action = isset($_GET['action'])?$_GET['action']: 'getUser' ;
+$controller = isset($_GET['controller'])? $_GET['controller']: 'dashboard' ;
+$action = isset($_GET['action'])?$_GET['action']: 'getDashBoard' ;
 
 include_once('libs/session.php');
 include_once('models/database.php');

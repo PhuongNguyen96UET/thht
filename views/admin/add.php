@@ -1,7 +1,7 @@
 <h1>Thêm thành viên</h1>
 
 
-<form id="main-form" class="form" method="post" action="<?php echo create_link(base_url(), array('controller' => 'user', 'action' => 'addUser')); ?>" accept-charset="utf-8">
+<form id="main-form" class="form" method="post"  accept-charset="utf-8">
     <input type="hidden" name="request_name" value="add_user"/>
 
     <div class="col-md-6">
@@ -27,9 +27,7 @@
 
        <label for="level" class="control-label" >Chọn loại người dùng <span style="color:red;">*</span></label>
        <select class="custom-select" name="level" class="col-sm-10 form-control">
-        <option value="">-- Chọn loại người dùng --</option>
         <option value="1" <?php echo (input_post('level') == 1) ? 'selected' : ''; ?>>Admin</option>
-        <option value="2" <?php echo (input_post('level') == 2) ? 'selected' : ''; ?>>Member</option>
         </select>
         <br>
         <span><?php show_error($error, 'level'); ?></span><br>

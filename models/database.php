@@ -28,9 +28,12 @@ function db_get_list($sql){
     global $conn;
     $data  = array();
     $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)){
-        $data[] = $row;
+    if ($result){
+        while ($row = mysqli_fetch_assoc($result)){
+            $data[] = $row;
+        }
     }
+
     return $data;
 }
 

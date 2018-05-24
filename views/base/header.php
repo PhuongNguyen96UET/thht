@@ -19,12 +19,18 @@ initial-scale=1">
             <div id="dndx">
                 <span>
             <?php if (is_admin()){ ?>
-                <a style="color: white;" href="<?php echo create_link(base_url(), array('controller' => 'list', 'action' => 'getList')); ?>">Quản lý người dùng</a>
+                <a style="color: white;" href="<?php echo create_link(base_url(), array('controller' => 'list', 'action' => 'getList')); ?>">Quản lý Admin</a>
             <?php } ?>
                     </span>
                 <span id="right">
-                Xin chào <?php echo get_current_username(); ?>
+                        <?php
+                        if (is_logged()){ ?>
+                        Xin chào <?php echo get_current_username(); ?>
                     <a style="color: white;" href="<?php echo base_url('?controller=login&action=logout'); ?>">Đăng xuất</a>
+                        <?php   }else{ ?>
+                            <a style="color: white;" href="<?php echo base_url('?controller=login&action=getUser'); ?>">Đăng nhập</a>
+                            <a style="color: white;" href="<?php echo base_url('?controller=login&action=register'); ?>">Đăng ký</a>
+                        <?php } ?>
             </span></div>
         </div>
     </div>
@@ -34,7 +40,9 @@ initial-scale=1">
             <ul class="fordtreeview list-group">
                 <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'nhanvien', 'action' => 'getQuery'))?>">Đặt vé máy bay</a></li>
                 <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'nhanvien', 'action' => 'getQuery'))?>">Đặt phòng khách sạn</a></li>
-                <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'khachhang', 'action' => 'getQuery'))?>">Quản lý tài khoản người dùng</a></li>
+                <?php if (is_admin()){ ?>
+                    <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'users_cus', 'action' => 'getQuery'))?>">Quản lý tài khoản người dùng</a></li>
+                <?php } ?>
             </ul>
         </div>
         <div class="col-xs-11 col-sm-10" id="main">
