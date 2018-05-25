@@ -1,11 +1,9 @@
 <?php if (!defined('IN_SITE')) die ('The request not found');
 function getQuery(){
-    if (!is_logged()) {
-        redirect(base_url(), array('controller' => 'login', 'action' => 'logout'));
-    }
+//    if (!is_logged()) {
+//        redirect(base_url(), array('controller' => 'login', 'action' => 'logout'));
+//    }
 
-    $sql1 = "SELECT id,name FROM `status`";
-    $cv = db_get_list($sql1);
 
     include_once('views/base/header.php');
     include_once('views/doitac/doitac.php');

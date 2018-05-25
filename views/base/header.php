@@ -6,7 +6,10 @@ initial-scale=1">
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head><body>
@@ -45,14 +48,14 @@ initial-scale=1">
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-1 col-sm-2" id="panel">
+        <div class="col-xs-1 col-sm-2" style="background-color: #EDF3F7;min-height: 93vh;">
 
             <ul class="fordtreeview list-group">
                 <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'nhanvien', 'action' => 'getQuery'))?>">Đặt vé máy bay</a></li>
-                <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'nhanvien', 'action' => 'getQuery'))?>">Đặt phòng khách sạn</a></li>
+                <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'doitac', 'action' => 'getQuery'))?>">Đặt phòng khách sạn</a></li>
                 <?php if (is_admin()){ ?>
                     <li class="list-group-item"><a href="<?php echo create_link(base_url(), array('controller' => 'users_cus', 'action' => 'getQuery'))?>">Quản lý tài khoản người dùng</a></li>
                 <?php } ?>
             </ul>
         </div>
-        <div class="col-xs-11 col-sm-10" id="main">
+        <div class="col-xs-11 col-sm-10" >
