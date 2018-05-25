@@ -1,4 +1,4 @@
-<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>-->
 <!---->
 <!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>-->
 <div class="row" id="nhanvien">
@@ -157,12 +157,12 @@
                          "        <img style=\"width: 250px; height: 160px\" src=\""+obj[i].imageUrl+"\">\n" +
                          "    </div>\n" +
                          "    <div class=\"col-md-4 content\" style=\"display: inline-block;\">\n" +
-                         "        <h3>"+obj[i].displayName+"</h3>\n" +
+                         "        <h3 style=\"color: #7373c3\">"+obj[i].displayName+"</h3>\n" +
                          "        <p>Đánh giá: "+obj[i].starRating+" sao</p>\n" +
                          "        <p>"+obj[i].region+"</p>\n" +
-                         "        <p>"+obj[i].userRatingInfo+" - "+obj[i].userRating+"</p>\n" +
+                         "        <p style=\"color: #1ba0e2;\">"+obj[i].userRatingInfo+" - "+obj[i].userRating+"</p>\n" +
                          "    </div>\n" +
-                         "        <div class=\"col-md-4 price\" style=\"display: inline-block;\" ><h4>Giá: "+obj[i].lowRate+" VND</h4></div>\n" +
+                         "        <div class=\"col-md-4 price\" style=\"display: inline-block;color: #f96d01;\" ><h4>Giá: "+obj[i].lowRate+" VND</h4></div>\n" +
                          "    </div>" +
                             "<hr>";
                      // console.log(html);
