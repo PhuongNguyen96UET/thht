@@ -157,7 +157,7 @@
                          "        <img style=\"width: 250px; height: 160px\" src=\""+obj[i].imageUrl+"\">\n" +
                          "    </div>\n" +
                          "    <div class=\"col-md-4 content\" style=\"display: inline-block;\">\n" +
-                         "        <h3 style=\"color: #7373c3\">"+obj[i].displayName+"</h3>\n" +
+                         "        <a href=\"https://www.traveloka.com/vi-vn/"+obj[i].hotelSeoUrl+"\" target=\"_blank\"><h3 style=\"color: #7373c3\">"+obj[i].displayName+"</h3></a>\n" +
                          "        <p>Đánh giá: "+obj[i].starRating+" sao</p>\n" +
                          "        <p>"+obj[i].region+"</p>\n" +
                          "        <p style=\"color: #1ba0e2;\">"+obj[i].userRatingInfo+" - "+obj[i].userRating+"</p>\n" +
@@ -182,7 +182,7 @@
 <!--        <img style="width: 60%; height: 60%" src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/30000002000128554_dm_3">-->
 <!--    </div>-->
 <!--    <div class="col-md-4 content" style="display: inline-block;">-->
-<!--        <h3>Khách sạn Rosabella</h3>-->
+<!--        <a href="" target="_blank" <h3>Khách sạn Rosabella</h3>>-->
 <!--        <p>Đánh giá: 3 sao</p>-->
 <!--        <p>Quận 1, Thành phố Hồ Chí Minh</p>-->
 <!--        <p>Ấn tượng - 8.5</p>-->
