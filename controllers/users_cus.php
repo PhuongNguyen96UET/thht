@@ -23,10 +23,10 @@ function getData()
 //if (is_submit('search_e')) {
     // Lấy danh sách dữ liệu từ form
     $data = array(
-        'customers.id' => input_post('id'),
-        'customers.fullname' => input_post('fullname'),
-        'customers.phone' => input_post('phone'),
-        'customers.email' => input_post('email'),
+        'tb_user.id' => input_post('id'),
+        'tb_user.fullname' => input_post('fullname'),
+        'tb_user.phone' => input_post('phone'),
+        'tb_user.email' => input_post('email'),
         'level' => 2,
     );
 
