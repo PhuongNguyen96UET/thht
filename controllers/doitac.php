@@ -6,7 +6,9 @@ function getQuery(){
 
 
     include_once('views/base/header.php');
-    include_once('views/doitac/doitac.php');
+    if(is_logged()) {
+        include_once('views/doitac/doitac.php');
+    }
     include_once('views/base/footer.php');
 }
 function getData()
