@@ -127,6 +127,7 @@ function register(){
             'address'     => input_post('address'),
             "password"  => input_post("password"),
             're-password'  => input_post('re-password'),
+            'level' => 2
         );
 
         // require file xử lý database cho user

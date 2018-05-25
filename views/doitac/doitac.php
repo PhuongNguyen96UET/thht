@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-sm-4" style="text-align: right;"><label >Địa điểm</label></div>
                         <div class="col-sm-8">
-                            <select id="city">
+                            <select id="city" class="form-control">
                                 <option value="0">-- Chọn TP --</option>
                                 <option value="10009843">TP Hà Nội</option>
                                 <option value="10010311">TP Huế</option>
