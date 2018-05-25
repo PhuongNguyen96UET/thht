@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
-
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>-->
+<!---->
+<!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>-->
 <div class="row" id="nhanvien">
     <h3>Tìm kiếm</h3>
 <!--    <form method="post" >-->
@@ -9,7 +9,14 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-4" style="text-align: right;"><label >Địa điểm</label></div>
-                        <div class="col-sm-8"><input type="text" name="ID" class="form-control" value=""></div>
+                        <div class="col-sm-8">
+                            <select id="city">
+                                <option value="0">-- Chọn TP --</option>
+                                <option value="10009843">TP Hà Nội</option>
+                                <option value="10010311">TP Huế</option>
+                                <option value="10009794">TP HCM</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -17,7 +24,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-4" style="text-align: right;"><label >Số người lớn</label></div>
-                        <div class="col-sm-8"><input type="number" min="0" name="numAdults" class="form-control" value=1></div>
+                        <div class="col-sm-8"><input type="number" min="0" id="numAdults" class="form-control" value=1></div>
                     </div>
                 </div>
             </div>
@@ -25,7 +32,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-4" style="text-align: right;"><label >Số trẻ em</label></div>
-                        <div class="col-sm-8"><input type="number" min="0" name="numChildren" class="form-control" value=0></div>
+                        <div class="col-sm-8"><input type="number" min="0" id="numChildren" class="form-control" value=0></div>
                     </div>
                 </div>
             </div>
@@ -68,6 +75,9 @@
 </div>
 <script>
     $('#search').click(function(){
+        $('.data').html("");
+        var startDate=new Date($('#startDate').val());
+        var endDate=new Date($('#endDate').val());
         var data={
             "clientInterface": "desktop",
             "context": {},
@@ -85,7 +95,7 @@
                         "true",
                         "true"
                     ],
-                    "top": "100"
+                    "top": "50"
                 },
                 "ccGuaranteeOptions": {
                     "ccGuaranteeRequirementOptions": [
@@ -97,25 +107,25 @@
                     ]
                 },
                 "checkInDate": {
-                    "day": "12",
-                    "month": "6",
-                    "year": "2018"
+                    "day": startDate.getDate(),
+                    "month": startDate.getMonth()+1,
+                    "year": startDate.getFullYear()
                 },
                 "checkOutDate": {
-                    "day": "13",
-                    "month": "6",
-                    "year": "2018"
+                    "day": endDate.getDate(),
+                    "month": endDate.getMonth()+1,
+                    "year": endDate.getFullYear()
                 },
                 "currency": "VND",
-                "geoId": "10009794",
+                "geoId": $("#city").val(),
 
                 "locationName": "Thành phố Hồ Chí Minh, Việt Nam",
                 "monitoringSpec": {
                     "lastKeyword": "Ha Noi City",
                     "referrer": "https://www.traveloka.com/vi-vn/"
                 },
-                "numAdults": "1",
-                "numChildren": "0",
+                "numAdults": $("#numAdults").val(),
+                "numChildren": $("#numChildren").val(),
                 "numInfants": "0",
                 "numOfNights": "1",
                 "numRooms": "1",
@@ -128,6 +138,7 @@
             },
             "fields": []
         }
+        console.log(data);
 
         $.post({
             type: "POST",
@@ -137,39 +148,46 @@
                 // "origin":"https://www.traveloka.com"
             },data:JSON.stringify(data),
             success : function(data) {
-                console.log(data);
+                // console.log(data);
+                var obj=data.data.entries;
+                var i;
+                 for(i=0;i<obj.length;i++){
+                     var html="<div class=\"row\" style=\"margin-top: 20px; \">\n" +
+                         "    <div class=\"col-md-4 img\" style=\"display: block; \">\n" +
+                         "        <img style=\"width: 250px; height: 160px\" src=\""+obj[i].imageUrl+"\">\n" +
+                         "    </div>\n" +
+                         "    <div class=\"col-md-4 content\" style=\"display: inline-block;\">\n" +
+                         "        <h3>"+obj[i].displayName+"</h3>\n" +
+                         "        <p>Đánh giá: "+obj[i].starRating+" sao</p>\n" +
+                         "        <p>"+obj[i].region+"</p>\n" +
+                         "        <p>"+obj[i].userRatingInfo+" - "+obj[i].userRating+"</p>\n" +
+                         "    </div>\n" +
+                         "        <div class=\"col-md-4 price\" style=\"display: inline-block;\" ><h4>Giá: "+obj[i].lowRate+" VND</h4></div>\n" +
+                         "    </div>" +
+                            "<hr>";
+                     // console.log(html);
+                     $('.data').append(html);
+                 }
             }
-            // dataType: dataType,
         });
     });
 
-    $(document).ready(function() {
-        $('#example').DataTable( {
-            "ajax": "data/objects.txt",
-            "columns": [
-                { "data": "name" },
-                { "data": "position" },
-                { "data": "office" },
-                { "data": "extn" },
-                { "data": "start_date" },
-                { "data": "salary" }
-            ]
-        } );
-    } );
 
 </script>
-<div class="row" style="height: 1%" ></div>
+<!--<div class="row" style="height: 1%" ></div>-->
 <h3>Danh sách phòng</h3>
-<table id="example" class="display" style="width:100%">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Extn.</th>
-        <th>Start date</th>
-        <th>Salary</th>
-    </tr>
-    </thead>
+<div class="data">
+<!--    <div class="row" style="margin-top: 10px; border: 1px solid #cccccc">-->
+<!--    <div class="col-md-4 img" style="display: block; ">-->
+<!--        <img style="width: 60%; height: 60%" src="https://d1nabgopwop1kh.cloudfront.net/hotel-asset/30000002000128554_dm_3">-->
+<!--    </div>-->
+<!--    <div class="col-md-4 content" style="display: inline-block;">-->
+<!--        <h3>Khách sạn Rosabella</h3>-->
+<!--        <p>Đánh giá: 3 sao</p>-->
+<!--        <p>Quận 1, Thành phố Hồ Chí Minh</p>-->
+<!--        <p>Ấn tượng - 8.5</p>-->
+<!--    </div>-->
+<!--        <div class="col-md-4 price" style="display: inline-block;" ><h4>Giá: 493000 VND</h4></div>-->
+<!--    </div>-->
+</div>
 
-</table>
